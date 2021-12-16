@@ -1,4 +1,19 @@
+.App {
+  display: flex;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: space-between;
+  flex-wrap: wrap;
+}
+
 table {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin:1em auto;
 }
 td {
@@ -7,15 +22,31 @@ td {
   border:1px solid;
   text-align:center;
 }
-td:first-child {
+input.sudokuCell:first-child {
   border-left:solid;
 }
-td:nth-child(3n) {
+input.sudokuCell:nth-child(3n) {
   border-right:solid ;
 }
 tr:first-child {
   border-top:solid;
 }
-tr:nth-child(3n) td {
+tr:nth-child(3n) input {
   border-bottom:solid ;
+}
+
+input.sudokuCell{
+  display: inline-block;
+  font-size: 2rem;
+  height: 3rem;
+  width: 3rem;
+  border: 1px solid;
+  text-align: center; 
+}
+
+.btn{
+  min-width: 10rem;
+  border-radius: 30px;
+  padding: 1rem;
+  background-color: lavender;
 }

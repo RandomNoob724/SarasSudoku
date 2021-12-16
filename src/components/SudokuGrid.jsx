@@ -1,12 +1,21 @@
 import React from "react";
 
 const SudokuGrid = ({ rowData }) => {
+  
   return (
-    <>
-      {rowData.foreach((cell, index) => {
-        return <td key={index}>{cell ? cell : ""}</td>;
-      })}
-    </>
+    <tbody>
+      {rowData.rows.map((row, rowIndex) => {
+        return (
+          <tr>
+            {row.cols.map((col, colIndex) => {
+              return (
+                <input readOnly={col.readOnly} className="sudokuCell" value={col.value}>
+                </input>
+              );
+            })}
+          </tr>
+        )})}
+    </tbody>
   );
 };
 
