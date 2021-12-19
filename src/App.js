@@ -17,7 +17,7 @@ const generateSudoku = () => {
       const col = {
         row: i,
         col: j,
-        value: value ? value+1 : null,
+        value: value != null ? value+1 : null,
         readOnly: value !== null,
         correctValue: correctValue+1,
       };
@@ -55,7 +55,7 @@ function App() {
             className="btn"
             onClick={solveBoard}
           >
-            Solve
+            Show Solution
           </button>
           <button
             className="btn ml-4"
@@ -66,7 +66,7 @@ function App() {
               }
             }}
           >
-            Rate
+            Correct
           </button>
         </div>
       </header>
