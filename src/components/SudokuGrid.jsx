@@ -1,14 +1,7 @@
 import React from "react";
 import SudokuCell from "./SudokuCell";
 
-const SudokuGrid = ({ rowData }) => {
-  console.log(rowData);
-  const checkAnswer = (event) => {
-    console.log(event)
-    if(event.target.value === 0 ){
-      event.target.style.backgroundColor = "white";
-    }
-  }
+const SudokuGrid = ({ rowData, changeValue, correct }) => {
 
   return (
     <>
@@ -16,7 +9,11 @@ const SudokuGrid = ({ rowData }) => {
         {rowData.rows.map((row, rowIndex) => {
           return (
             <tr key={rowIndex}>
-              <SudokuCell col={row} checkAnswer={checkAnswer} />
+              {row.cols.map((col, colIndex) => {
+                return (
+                  <SudokuCell cell={col} changeValue={changeValue} correct={correct} />
+                );
+              })}
             </tr>
           );
         })}

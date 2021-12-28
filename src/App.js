@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import generator from "sudoku";
 import SudokuGrid from "./components/SudokuGrid";
+import Confetti from "./components/Confetti";
 
 const generateSudoku = () => {
   const raw = generator.makepuzzle();
@@ -31,7 +32,39 @@ const generateSudoku = () => {
 
 function App() {
   const [puzzle, setPuzzle] = useState(generateSudoku());
-  console.log(puzzle);
+  const [isSolved, setIsSolved] = useState(false);
+
+  const resetBoard = () => {
+    setPuzzle(generateSudoku());
+  }
+
+  const changeValue = (row, col, value) => {
+    const newPuzzle = { ...puzzle };
+    newPuzzle.rows[row].cols[col].value = value;
+    setPuzzle(newPuzzle);
+  };
+
+  const checkSolution = () => {
+    const newPuzzle = { ...puzzle };
+    let isCorrect = true;
+    for (let i = 0; i < 9; i++) {
+      for (let j = 0; j < 9; j++) {
+        const value = newPuzzle.rows[i].cols[j].value;
+        const correctValue = newPuzzle.rows[i].cols[j].correctValue;
+        if (value !== correctValue) {
+          isCorrect = false;
+        }
+      }
+    }
+    return isCorrect;
+  };
+
+  useEffect(() => {
+    if (checkSolution()) {
+      alert("You win!");
+      setIsSolved(true);
+    }
+  }, [puzzle]);
 
   const solveBoard = () => {
     const solution = puzzle
@@ -44,11 +77,13 @@ function App() {
   }
 
 
+
   return (
     <div className="App center">
+      {isSolved && <Confetti />}
       <header className="App-header">
         <table>
-          <SudokuGrid rowData={puzzle} />
+          <SudokuGrid rowData={puzzle} changeValue={changeValue} />
         </table>
         <div className="center">
           <button
@@ -59,14 +94,8 @@ function App() {
           </button>
           <button
             className="btn ml-4"
-            onClick={() => {
-              const rated = generator.ratepuzzle(puzzle);
-              if (rated) {
-                setPuzzle(rated);
-              }
-            }}
-          >
-            Correct
+            onClick={resetBoard}>
+            Reset
           </button>
         </div>
       </header>
