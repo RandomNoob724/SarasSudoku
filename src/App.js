@@ -63,6 +63,8 @@ function App() {
     if (checkSolution()) {
       alert("You win!");
       setIsSolved(true);
+    } else {
+      setIsSolved(false);
     }
   }, [puzzle]);
 
@@ -83,7 +85,7 @@ function App() {
       {isSolved && <Confetti />}
       <header className="App-header">
         <table>
-          <SudokuGrid rowData={puzzle} changeValue={changeValue} />
+          <SudokuGrid ref={puzzle} rowData={puzzle} changeValue={changeValue} />
         </table>
         <div className="center">
           <button

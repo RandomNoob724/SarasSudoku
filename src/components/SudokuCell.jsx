@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const SudokuCell = ({ cell, changeValue }) => {
-  const [cellValue] = useState(cell);
+  const [cellValue, setCellValue] = useState(cell);
+
+  useEffect(() => {
+    setCellValue(cell);
+  }, [cell]);
 
   const checkAnserHandler = (event) => {
     const newValue = {...cellValue};
