@@ -61,7 +61,6 @@ function App() {
 
   useEffect(() => {
     if (checkSolution()) {
-      alert("You win!");
       setIsSolved(true);
     } else {
       setIsSolved(false);
@@ -84,9 +83,7 @@ function App() {
     <div className="App center">
       {isSolved && <Confetti />}
       <header className="App-header">
-        <table>
-          <SudokuGrid ref={puzzle} rowData={puzzle} changeValue={changeValue} />
-        </table>
+        <SudokuGrid rowData={puzzle} changeValue={changeValue} />
         <div className="center">
           <button
             className="btn"

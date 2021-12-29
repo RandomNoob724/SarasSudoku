@@ -20,26 +20,27 @@ table {
   justify-content: center;
   margin:1em auto;
 }
+
 td {
-  height:30px;
-  width:30px;
-  border:1px solid;
-  text-align:center;
+  margin: 0;
+  padding: 0;
 }
-input.sudokuCell:first-child {
+td:first-child {
   border-left:solid;
 }
-input.sudokuCell:nth-child(3n) {
+td:nth-child(3n) {
   border-right:solid ;
 }
+
 tr:first-child {
   border-top:solid;
 }
-tr:nth-child(3n) input {
+
+tr:nth-child(3n) {
   border-bottom:solid ;
 }
 
-input.sudokuCell{
+td input.sudokuCell{
   display: inline-block;
   font-size: 2rem;
   height: 3rem;

@@ -10,21 +10,21 @@ const SudokuGrid = ({ rowData, changeValue, correct }) => {
   }, [rowData]);
 
   return (
-    <>
+    <table>
       <tbody>
         {rowdata.rows.map((row, rowIndex) => {
           return (
             <tr key={rowIndex}>
               {row.cols.map((col, colIndex) => {
                 return (
-                  <SudokuCell cell={col} changeValue={changeValue} correct={correct} />
+                  <SudokuCell key={colIndex} cell={col} changeValue={changeValue} correct={correct} />
                 );
               })}
             </tr>
           );
         })}
       </tbody>
-    </>
+    </table>
   );
 };
 

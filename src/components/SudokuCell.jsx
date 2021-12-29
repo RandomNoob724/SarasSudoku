@@ -14,7 +14,7 @@ const SudokuCell = ({ cell, changeValue }) => {
   }
 
   return (
-    <>
+    <td>
       <input
         onChange={checkAnserHandler}
         readOnly={cellValue.readOnly}
@@ -22,7 +22,7 @@ const SudokuCell = ({ cell, changeValue }) => {
         value={cell.value != null ? cell.value : ""}
         style={{ backgroundColor: /*cellValue.value !== cellValue.correctValue && cellValue.value ? "red" :*/ cellValue.readOnly ? "lightgray" : "white" }}
       ></input>
-    </>
+    </td>
   );
 };
 
