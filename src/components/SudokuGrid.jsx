@@ -8,7 +8,7 @@ const SudokuGrid = ({ rowData, changeValue, correct }) => {
   useEffect(() => {
     setRow(rowData);
   }, [rowData]);
-
+  
   return (
     <table>
       <tbody>

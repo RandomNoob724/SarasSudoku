@@ -2,15 +2,10 @@ import Particles from "react-tsparticles";
 
 import React from 'react'
 
-const Confetti = () => {
+const Confetti = ({show}) => {
   return (
     <Particles
       options={{
-        background: {
-          color: {
-            value: "#000000"
-          }
-        },
         fullScreen: {
           enable: true,
           zIndex: -1
@@ -298,4 +293,4 @@ const Confetti = () => {
   )
 }
 
-export default Confetti
+export default Confetti;

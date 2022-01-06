@@ -5,7 +5,7 @@ const SudokuCell = ({ cell, changeValue }) => {
 
   useEffect(() => {
     setCellValue(cell);
-  }, [cell]);
+  }, [cell.value]);
 
   const checkAnserHandler = (event) => {
     const newValue = {...cellValue};
@@ -20,7 +20,7 @@ const SudokuCell = ({ cell, changeValue }) => {
         readOnly={cellValue.readOnly}
         className="sudokuCell"
         value={cell.value != null ? cell.value : ""}
-        style={{ backgroundColor: /*cellValue.value !== cellValue.correctValue && cellValue.value ? "red" :*/ cellValue.readOnly ? "lightgray" : "white" }}
+        style={{ backgroundColor: cellValue.value !== cellValue.correctValue && cellValue.value ? "red" : cellValue.readOnly ? "lightgray" : "white" }}
       ></input>
     </td>
   );

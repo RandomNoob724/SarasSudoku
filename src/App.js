@@ -1,49 +1,26 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import generator from "sudoku";
 import SudokuGrid from "./components/SudokuGrid";
 import Confetti from "./components/Confetti";
-
-const generateSudoku = () => {
-  const raw = generator.makepuzzle();
-  const solution = generator.solvepuzzle(raw);
-  const result = { rows: [] };
-
-  for (let i = 0; i < 9; i++) {
-    const row = { cols: [], index: i };
-
-    for (let j = 0; j < 9; j++) {
-      const value = raw[i * 9 + j];
-      const correctValue = solution[i * 9 + j];
-      const col = {
-        row: i,
-        col: j,
-        value: value != null ? value+1 : null,
-        readOnly: value !== null,
-        correctValue: correctValue+1,
-      };
-      row.cols.push(col);
-    }
-    result.rows.push(row);
-  }
-  return result
-};
-
+import { generateSudoku } from "./util/sudoku";
 
 function App() {
   const [puzzle, setPuzzle] = useState(generateSudoku());
   const [isSolved, setIsSolved] = useState(false);
 
+  // Add modal to ask the user if they are sure that they would like to start a new game
   const resetBoard = () => {
     setPuzzle(generateSudoku());
   }
 
+  // When a value is changed the value on that specific place on the board update the board to the new board
   const changeValue = (row, col, value) => {
     const newPuzzle = { ...puzzle };
     newPuzzle.rows[row].cols[col].value = value;
     setPuzzle(newPuzzle);
   };
 
+  // Check if the solution is the correct one
   const checkSolution = () => {
     const newPuzzle = { ...puzzle };
     let isCorrect = true;
@@ -56,6 +33,7 @@ function App() {
         }
       }
     }
+    console.log(isCorrect);
     return isCorrect;
   };
 
@@ -67,6 +45,7 @@ function App() {
     }
   }, [puzzle]);
 
+  // Display the correct solution
   const solveBoard = () => {
     const solution = puzzle
     solution.rows.forEach(cols => {
@@ -76,8 +55,6 @@ function App() {
     });
     setPuzzle({...puzzle, solution});
   }
-
-
 
   return (
     <div className="App center">
@@ -93,8 +70,15 @@ function App() {
           </button>
           <button
             className="btn ml-4"
-            onClick={resetBoard}>
-            Reset
+            onClick={resetBoard}
+          >
+            New Game
+          </button>
+          <button
+            className="btn ml-4"
+            onClick={checkSolution}
+          >
+            Check Solution
           </button>
         </div>
       </header>
