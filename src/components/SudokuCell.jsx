@@ -19,6 +19,7 @@ const SudokuCell = ({ cell, changeValue }) => {
         onChange={checkAnserHandler}
         readOnly={cellValue.readOnly}
         className="sudokuCell"
+        type="number"
         value={cell.value != null ? cell.value : ""}
         style={{ backgroundColor: /*cellValue.value !== cellValue.correctValue && cellValue.value ? "red" :*/ cellValue.readOnly ? "lightgray" : "white" }}
       ></input>
